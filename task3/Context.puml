@@ -1,0 +1,18 @@
+@startuml
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+Person(user, "Собственник", "Использует приложение для открытия домофона и шлагбаума")
+
+System(mobile_app, "Мобильное приложение для собственников", "Обеспечивает взаимодействие с Умным домом")
+System_Ext(system, "Приложение\n'Умный дом'", "Обеспечивает функции интеллектуального домофона и шлагбаума")
+System_Ext(intercom, "Домофон")
+System_Ext(barrier, "Шлагбаум")
+
+Rel(user, mobile_app, "Отправляет команду на открытие домофона или шлагбаума")
+Rel(mobile_app, system, "Передает команду на открытие домофона или шлагбаума")
+Rel(system, user, "Распознает лицо и номер автомобиля")
+Rel(system, intercom, "Открывает домофон")
+Rel(system, barrier, "Открывает шлагбаум")
+
+@enduml
