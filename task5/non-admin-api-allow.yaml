@@ -1,0 +1,20 @@
+# Сетевая политика для разрешения трафика между front-end и back-end-api
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: non-admin-api-allow
+  namespace: app-namespace
+spec:
+  podSelector:
+    matchLabels:
+      role: back-end-api
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              role: fronta-end
+      ports:
+        - protocol: TCP
+          port: 80
