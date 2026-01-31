@@ -1,0 +1,20 @@
+@startuml
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+Person(user, "Собственник", "Использует приложение для управления доступом")
+
+System(mobile_app, "Мобильное приложение для собственников", "iOS/Android, управление доступом")
+System(api_gateway, "Smart-Home Gateway", "Единая точка интеграции с Умным домом")
+System_Ext(smart_home, "Платформа Умный дом", "Распознавание лиц, управление устройствами")
+System_Ext(intercom, "Домофон", "Устройство доступа")
+System_Ext(barrier, "Шлагбаум", "Устройство доступа")
+
+Rel(user, mobile_app, "Отправляет команду открытия")
+Rel(mobile_app, api_gateway, "Вызывает API доступа", "REST/HTTPS")
+Rel(api_gateway, smart_home, "Передаёт команды", "REST/HTTPS")
+Rel(smart_home, intercom, "Открывает")
+Rel(smart_home, barrier, "Открывает")
+Rel(smart_home, user, "Распознаёт лицо/авто")
+
+@enduml
