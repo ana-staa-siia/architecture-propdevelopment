@@ -9,3 +9,4 @@ kubectl run admin-back-end-api-app --image=nginx --labels role=admin-back-end-ap
 # Применение политик
 kubectl apply -f non-admin-api-allow.yaml
 kubectl apply -f admin-api-allow.yaml
+kubectl apply -f default-deny.yaml
